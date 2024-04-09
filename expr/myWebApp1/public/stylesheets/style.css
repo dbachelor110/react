@@ -6,3 +6,18 @@ body {
 a {
   color: #00B7FF;
 }
+
+form {
+  max-width: 25rem;
+  min-width: 18rem;
+}
+
+.formItem {
+  display:flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+}
+
+.formItem > button{
+  margin-left: auto;
+}

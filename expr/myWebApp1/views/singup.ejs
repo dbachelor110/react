@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<%- include('header.ejs') -%>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to <%= title %>
+  </p>
+  <h2>Sing up</h2>
+  <form id="singup" action="/singup" method="post">
+    <div class="formItem">
+      <label for="username">username</label>
+      <input type="text" name="name" id="username">
+    </div>
+
+    <div class="formItem">
+      <label for="password">password</label>
+      <input type="password" name="password" id="password">
+    </div>
+
+    <div class="formItem">
+      <label for="email">email</label>
+      <input type="text" name="email" id="email">
+    </div>
+
+    <div class="formItem">
+      <button type="submit">Submit</button>
+    </div>
+
+  </form>
+</body>
+<script>
+  document.getElementById('singup').addEventListener('submit', async (event)=>{
+    // 防止表單默認提交行為
+    event.preventDefault();
+    const preFormData = new FormData(event.target);
+    // 在這裡添加您想要執行的下一步操作，例如重定向或其他處理
+    const [...pairs] = preFormData.entries();
+    const formData = pairs.reduce((p,c)=>{p[c[0]]=c[1];return p;},{});
+    console.log(JSON.stringify(formData));
+    try{
+      const result = await fetch('/users/',{
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+              },
+              body:JSON.stringify(formData),
+          });
+      if(result.ok){
+        window.location.href = '/';
+      }else{
+        window.location.href = '/singup/';
+      }
+    }catch(error){
+      console.log(error);
+    }
+    
+  });
+</script>
+</html>
