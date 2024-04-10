@@ -14,7 +14,7 @@ function ProcessInstance(props){
                 <h2>{props.processName}</h2>
             </div>);
 }
-Lover.propTypes = {
+ProcessInstance.propTypes = {
     id:PropTypes.number,
     processName:PropTypes.string,
 }

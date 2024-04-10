@@ -1,16 +1,20 @@
 import ProcessInstance from "./ProcessInstance"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const JBPMBASEURL = `http://192.168.51.208:8086/kie-server/services/rest`;
 const containerID = `base_1.0.0-SNAPSHOT`;
 const processID = `base.choose`;
-const getJBPMFetcher = (jbpmbaseurl)=>{
+const username = `wbadmin`;
+const password = `wbadmin`;
+const JBPMFetcher = (jbpmbaseurl)=>{
   const BASEURL = jbpmbaseurl;
   const fetcher = async(apiUrl,init)=>{
-    return await fetch(`/get/${JBPMBASEURL}${apiUrl}`,init);
+    return await fetch(`/jbpm${apiUrl}`,init).catch(error=>console.log(error));
+    // return await fetch(`/api/${JBPMBASEURL}${apiUrl}`,init).catch(error=>console.log(error));
   }
   return fetcher
 }
-const FetchINIT = ({headers={'Content-Type':`application/json`,},method=`GET`,...kargs})=>{
+// Buffer.from(`${username}:${password}`, "utf-8").toString("base64")
+const FetchINIT = ({headers={'accept':`application/json`,'Content-Type':`application/json`,'Authorization':`Basic ${btoa(`${username}:${password}`)}`},method=`GET`,...kargs})=>{
   const init ={
     headers: headers,
     method: method, // *GET, POST, PUT, DELETE, etc.
@@ -19,7 +23,7 @@ const FetchINIT = ({headers={'Content-Type':`application/json`,},method=`GET`,..
   }
   return init
 };
-const JBPM = getJBPMFetcher(JBPMBASEURL);
+const JBPM = JBPMFetcher(JBPMBASEURL);
 const postProcessInstance=async()=>{
   return await JBPM(`/server/containers/${containerID}/processes/${processID}/instances`,FetchINIT({method:`POST`}));
 };
@@ -32,13 +36,31 @@ const putTasksStarted=async(taskInstanceID,body)=>{
 const putTasksCompleted=async(taskInstanceID,body)=>{
   return await JBPM(`/server/containers/${containerID}/tasks/${taskInstanceID}/states/completed`,FetchINIT({method:`PUT`,body:body}));
 };
-
-const ProcessInstanceID = postProcessInstance().then((result)=>result.text());
-
+const getProcessInstanceID = async()=>{
+  const ID = await postProcessInstance().then((result)=>result.text());
+  console.log(`ID:`);
+  console.log(ID);
+  const intID = parseInt(ID);
+  return intID;
+};
 function App() {
-  const {pID, setPID} = useState(0);
+  const [pID, setPID] = useState(0);
+  
+  useEffect(() => {
+      if(pID==0){
+        setPID(-1);
+        console.log(`useEffect now id = ${pID}`);
+        getProcessInstanceID().then(id=>setPID(id));
+      }
+  }, []); // Empty dependency array ensures this effect runs only once on initial render
+
   return (
     <>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <ProcessInstance id={pID} processName={processID}></ProcessInstance>
+      )}
       <ProcessInstance id={pID} processName={processID}></ProcessInstance>
     </>
   )
