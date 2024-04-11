@@ -2,14 +2,20 @@ const express = require('express');
 const userM = require('../modules/usersM');
 const router = express.Router();
 const jwt = require("../modules/jwt");
+
+const deepCopy=(inputData)=>JSON.parse(JSON.stringify(inputData));
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  const token = req.headers.authorization;
-  const user = token?jwt.verify(token.split(` `)[1]):false;
+  // const token = deepCopy(req.headers.authorization);
+  const token = req.cookies.token;
+  const user = token?jwt.verify(token):false;
+  console.log(user);
   if(user){
     res.render('index', { title: 'Express', user: user.name ,attributes: user});
+  }else{
+    res.render('index', { title: 'Express', user: false ,attributes: false});
   }
-  res.render('index', { title: 'Express', user: false ,attributes: false});
 });
 
 router.get('/singup', function(req, res, next) {
@@ -25,7 +31,8 @@ router.post("/login", async(req, res)=>{
   const user = await userM.getUserWithCheckPassword(body);
   if (user.data){
     const token = jwt.sign(user.data);
-    res.send({token:token});
+    res.cookie(`token`,token);
+    res.redirect(`/`);
   }else{
     res.render('login', { title: 'Express', user: false, attributes: user });
   }

@@ -1,0 +1,8 @@
+<script>
+    
+    (()=>{  
+            const token = localStorage.getItem('token');
+            token?document.cookie=`token=${token}`:{};
+        }
+    )();
+</script>

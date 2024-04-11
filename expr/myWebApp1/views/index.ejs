@@ -21,6 +21,7 @@
     <% } %>
     </p>
   </body>
+  <%- include('settoken.ejs') -%>
   <script type="module">
     import { addListenerByID } from '/js/addListenerByID.js';
     const deleteUserHandler=(e)=>{
@@ -31,6 +32,7 @@
           .then(response => {
               if (response.ok) {
                   // 如果刪除成功，重新導向到登入頁面
+                  localStorage.removeItem(`token`);
                   window.location.href = "/login";
               } else {
                   // 如果刪除失敗，顯示錯誤信息
@@ -43,7 +45,10 @@
           });
       }
     const addListener=()=>{
-      addListenerByID(`logoutButton`,'click',(e)=>window.location.href = "/");
+      addListenerByID(`logoutButton`,'click',(e)=>{
+        localStorage.removeItem(`token`);
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+        window.location.href = "/"});
       addListenerByID(`cancelButton`,'click',deleteUserHandler);
       addListenerByID(`loginButton`,'click',(e)=>window.location.href = "/login");
       addListenerByID(`singupButton`,'click',(e)=>window.location.href = "/singup");

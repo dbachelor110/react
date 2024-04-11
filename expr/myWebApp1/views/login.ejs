@@ -21,11 +21,13 @@
       </form>
       <% if (attributes.exist==false) { %>
         <p style="color: crimson;">* User not exist</p>
+        <button id="singupButton" type="button">Sing up</button>
       <% } else if (attributes.verify==false) { %>
         <p style="color: crimson;">* Incorrect password</p>
       <% } %>
     </p>
   </body>
+  <%- include('settoken.ejs') -%>
   <script type="module">
     import { addListenerByID } from '/js/addListenerByID.js';
     const loginHandler=async(event)=>{
@@ -34,7 +36,7 @@
       const preFormData = new FormData(event.target);
       const [...pairs] = preFormData.entries();
       const formData = pairs.reduce((p,c)=>{p[c[0]]=c[1];return p;},{});
-      const token = await fetch('/login',{
+      fetch('/login',{
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -44,15 +46,16 @@
       })
       .then(result=>result.json())
       .then(json=>json.token)
+      .then(token=>{
+        localStorage.setItem('token', token);
+        document.cookie=`token=${token}`;
+      })
+      .then(result=>document.location.href = "/")
       .catch(error=>console.log(error));
-      console.log('loginSuccess.');
-      console.log(token);
-      localStorage.setItem('token', token);
-      console.log(localStorage.getItem('token'));
-      window.location.href = "/"
     };
     const addListener=()=>{
-      addListenerByID(`loginForm`,`submit`,loginHandler);
+      addListenerByID(`singupButton`,'click',(e)=>window.location.href = "/singup");
+      // addListenerByID(`loginForm`,`submit`,loginHandler);
     }
     document.addEventListener("DOMContentLoaded", addListener);
   </script>

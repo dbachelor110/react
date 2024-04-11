@@ -17,9 +17,16 @@ router.post('/', async(req, res, next)=>{
   const body = req.body;
   console.log(`body:`);
   console.log(body);
-  const [rows,f] = await userM.postUsers(body);
-  res.status(201).json(rows);
+  userM.postUsers(body)
+  .then(result=>res.status(201).json(result[0]))
+  .catch(error=>{
+    console.log(error);
+    const json = JSON.parse(JSON.stringify({error:error}));
+    console.log(json);
+    res.status(403).json(json);
+  });
 });
+
 router.put('/:userId', async(req, res, next)=>{
   const userId = req.params.userId;
   const body = req.body;

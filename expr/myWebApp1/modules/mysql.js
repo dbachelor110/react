@@ -61,7 +61,10 @@ const createConnection = ({
     const config = { host, port, user, database, waitForConnections, connectionLimit, maxIdle, idleTimeout, queueLimit, enableKeepAlive, keepAliveInitialDelay, ...rest };
     // console.log(config);
     const pool = Pool(config);
-    const outputFunction = async ({ query='', values = [], errorHandler = error => { console.log(error); } }) => {
+    const outputFunction = async ({ query='', values = [], errorHandler = error => { 
+        console.log(error);
+        throw error;
+    } }) => {
         return await pool.query(query, values)
         .then((results=>{return results;}))
         .catch(error => errorHandler(error));
