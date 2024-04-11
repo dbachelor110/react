@@ -37,7 +37,6 @@
     // 防止表單默認提交行為
     event.preventDefault();
     const preFormData = new FormData(event.target);
-    // 在這裡添加您想要執行的下一步操作，例如重定向或其他處理
     const [...pairs] = preFormData.entries();
     const formData = pairs.reduce((p,c)=>{p[c[0]]=c[1];return p;},{});
     console.log(JSON.stringify(formData));

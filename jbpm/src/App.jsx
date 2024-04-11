@@ -5,11 +5,10 @@ const containerID = `base_1.0.0-SNAPSHOT`;
 const processID = `base.choose`;
 const username = `wbadmin`;
 const password = `wbadmin`;
-const JBPMFetcher = (jbpmbaseurl)=>{
-  const BASEURL = jbpmbaseurl;
+const proxyFetcher = (baseurl)=>{
+  const BASEURL = baseurl;
   const fetcher = async(apiUrl,init)=>{
-    return await fetch(`/jbpm${apiUrl}`,init).catch(error=>console.log(error));
-    // return await fetch(`/api/${JBPMBASEURL}${apiUrl}`,init).catch(error=>console.log(error));
+    return await fetch(`/api/${BASEURL}${apiUrl}`,init).catch(error=>console.log(error));
   }
   return fetcher
 }
@@ -23,7 +22,7 @@ const FetchINIT = ({headers={'accept':`application/json`,'Content-Type':`applica
   }
   return init
 };
-const JBPM = JBPMFetcher(JBPMBASEURL);
+const JBPM = proxyFetcher(JBPMBASEURL);
 const postProcessInstance=async()=>{
   return await JBPM(`/server/containers/${containerID}/processes/${processID}/instances`,FetchINIT({method:`POST`}));
 };

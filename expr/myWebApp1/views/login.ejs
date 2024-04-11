@@ -3,20 +3,8 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <% if (user) { %>
-      <h2>Hellow <%= user %></h2>
-      <div hidden id="userID" value="<%- attributes.id %>"></div>
-      <P>You get attributes</P>
-      <ul>
-        <% for(const key in attributes ){ %>
-          <li><%- key %>: <%- attributes[key] %></li>
-        <% } %>
-      </ul>
-      <button id="logoutButton" type="button">Logout</button>
-      <button id="cancelButton" type="button">Cancel account</button>
-    <% } else { %>
       <h2>Login</h2>
-      <form action="/" method="post">
+      <form id="loginForm" action="/login" method="post">
         <div class="formItem">
           <label for="username">username</label>
           <input type="text" name="name" id="username">
@@ -36,42 +24,35 @@
       <% } else if (attributes.verify==false) { %>
         <p style="color: crimson;">* Incorrect password</p>
       <% } %>
-    <% } %>
     </p>
   </body>
-  <script>
+  <script type="module">
+    import { addListenerByID } from '/js/addListenerByID.js';
+    const loginHandler=async(event)=>{
+      // 防止表單默認提交行為
+      event.preventDefault();
+      const preFormData = new FormData(event.target);
+      const [...pairs] = preFormData.entries();
+      const formData = pairs.reduce((p,c)=>{p[c[0]]=c[1];return p;},{});
+      const token = await fetch('/login',{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body:JSON.stringify(formData),
+      })
+      .then(result=>result.json())
+      .then(json=>json.token)
+      .catch(error=>console.log(error));
+      console.log('loginSuccess.');
+      console.log(token);
+      localStorage.setItem('token', token);
+      console.log(localStorage.getItem('token'));
+      window.location.href = "/"
+    };
     const addListener=()=>{
-      const logoutButton = document.getElementById("logoutButton");
-      const cancelButton = document.getElementById("cancelButton");
-      // early return
-      if (logoutButton == null) {
-        console.log(`early return`);
-        return;
-      }
-
-      console.log(`addListener`);
-      logoutButton.addEventListener('click',(e)=>window.location.href = "/");
-      cancelButton.addEventListener('click',(e)=>{
-        const userID = document.getElementById("userID").getAttribute(`value`);
-        console.log(`userID:`);
-        console.log(userID);
-        fetch(`/users/${userID}`, {
-              method: "DELETE"
-          })
-          .then(response => {
-              if (response.ok) {
-                  // 如果刪除成功，重新導向到登入頁面
-                  window.location.href = "/"; // 假設登入頁面的路徑為 /login
-              } else {
-                  // 如果刪除失敗，顯示錯誤信息
-                  alert("Failed to delete account");
-              }
-          })
-          .catch(error => {
-              console.error("Error:", error);
-              alert("An error occurred");
-          });
-      });
+      addListenerByID(`loginForm`,`submit`,loginHandler);
     }
     document.addEventListener("DOMContentLoaded", addListener);
   </script>

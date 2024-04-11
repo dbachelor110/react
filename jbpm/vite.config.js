@@ -13,6 +13,13 @@ const proxyLog = (proxy) => {
     const { method, protocol, host, path } = proxyReq;
     console.log(`[proxy] ${method} ${protocol}//${host}${path}`);
   })}
+const targetByHostAndDoLog=(proxy,option)=>{
+  proxy.on('proxyReq', (proxyReq) => {
+    const { method, protocol, host, path } = proxyReq;
+    option.target=`${protocol}//${host}`;
+    console.log(`[proxy] ${method} ${protocol}//${host}${path}`);
+  })
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,6 +39,11 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/jbpm/, ''),
         configure: proxyLog,
+      },
+      '/api/': {
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\//, ''),
+        configure: targetByHostAndDoLog,
       },
     },
   }
