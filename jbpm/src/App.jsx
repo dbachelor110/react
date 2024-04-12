@@ -1,47 +1,7 @@
 import ProcessInstance from "./ProcessInstance"
 import { useState, useEffect } from "react";
-const JBPMBASEURL = `http://192.168.51.208:8086/kie-server/services/rest`;
-const containerID = `base_1.0.0-SNAPSHOT`;
-const processID = `base.choose`;
-const username = `wbadmin`;
-const password = `wbadmin`;
-const proxyFetcher = (baseurl)=>{
-  const BASEURL = baseurl;
-  const fetcher = async(apiUrl,init)=>{
-    return await fetch(`/api/${BASEURL}${apiUrl}`,init).catch(error=>console.log(error));
-  }
-  return fetcher
-}
-// Buffer.from(`${username}:${password}`, "utf-8").toString("base64")
-const FetchINIT = ({headers={'accept':`application/json`,'Content-Type':`application/json`,'Authorization':`Basic ${btoa(`${username}:${password}`)}`},method=`GET`,...kargs})=>{
-  const init ={
-    headers: headers,
-    method: method, // *GET, POST, PUT, DELETE, etc.
-    mode: "cors", // no-cors, cors, *same-origin
-    ...kargs,
-  }
-  return init
-};
-const JBPM = proxyFetcher(JBPMBASEURL);
-const postProcessInstance=async()=>{
-  return await JBPM(`/server/containers/${containerID}/processes/${processID}/instances`,FetchINIT({method:`POST`}));
-};
-const getTasks=async(processInstanceID)=>{
-  return await JBPM(`/server/queries/tasks/instances/process/${processInstanceID}`,FetchINIT({}));
-};
-const putTasksStarted=async(taskInstanceID,body)=>{
-  return await JBPM(`/server/containers/${containerID}/tasks/${taskInstanceID}/states/started`,FetchINIT({method:`PUT`,body:body}));
-};
-const putTasksCompleted=async(taskInstanceID,body)=>{
-  return await JBPM(`/server/containers/${containerID}/tasks/${taskInstanceID}/states/completed`,FetchINIT({method:`PUT`,body:body}));
-};
-const getProcessInstanceID = async()=>{
-  const ID = await postProcessInstance().then((result)=>result.text());
-  console.log(`ID:`);
-  console.log(ID);
-  const intID = parseInt(ID);
-  return intID;
-};
+import JBPM from './modules/jbpm';
+
 function App() {
   const [pID, setPID] = useState(0);
   

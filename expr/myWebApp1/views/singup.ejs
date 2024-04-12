@@ -41,24 +41,16 @@
     const [...pairs] = preFormData.entries();
     const formData = pairs.reduce((p,c)=>{p[c[0]]=c[1];return p;},{});
     console.log(JSON.stringify(formData));
-    try{
-      const result = await fetch('/users/',{
+    fetch('/users/',{
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json",
               },
               body:JSON.stringify(formData),
-          });
-      if(result.ok){
-        window.location.href = '/';
-      }else{
-        window.location.href = '/singup/';
-      }
-    }catch(error){
-      console.log(error);
-    }
-    
+          })
+          .then((result)=>result.ok?window.location.href='/':{})
+    .catch(error=>console.log(error));
   });
 </script>
 </html>

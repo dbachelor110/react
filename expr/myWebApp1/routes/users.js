@@ -1,5 +1,6 @@
 const express = require('express');
 const userM = require('../modules/usersM');
+const { deepCopy } = require('../modules/deepCopy');
 const router = express.Router();
 
 /* GET users listing. */
@@ -15,13 +16,11 @@ router.get('/:userId', async(req, res, next)=>{
 });
 router.post('/', async(req, res, next)=>{
   const body = req.body;
-  console.log(`body:`);
-  console.log(body);
   userM.postUsers(body)
   .then(result=>res.status(201).json(result[0]))
   .catch(error=>{
     console.log(error);
-    const json = JSON.parse(JSON.stringify({error:error}));
+    const json = deepCopy({error:error});
     console.log(json);
     res.status(403).json(json);
   });
