@@ -13,6 +13,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+#root {
+  margin: 0 auto;
+  width: 60%;
+  max-width: 800px;
+  min-width: 320px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -23,7 +30,7 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   place-items: center;
   min-width: 320px;
@@ -66,3 +73,8 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/* .board {
+  display: flex;
+  padding: 0 0.5rem;
+} */

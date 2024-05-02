@@ -15,14 +15,15 @@ const proxyLog = (proxy) => {
   })}
 const targetByHostAndDoLog=(proxy,option)=>{
   proxy.on('proxyReq', (proxyReq) => {
-    const { method, protocol, host, path } = proxyReq;
+    const { method, protocol, host, path, port } = proxyReq;
     option.target=`${protocol}//${host}`;
+    console.log(option.target);
     console.log(`[proxy] ${method} ${protocol}//${host}${path}`);
   })
 }
-
 // https://vitejs.dev/config/
 export default defineConfig({
+  base:`/peo/jbpm/`,
   origin: `*`,
   plugins: [react()],
   server: {
@@ -41,6 +42,7 @@ export default defineConfig({
         configure: proxyLog,
       },
       '/api/': {
+        target: `http://192.168.51.208:8086/kie-server/services/rest`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api\//, ''),
         configure: targetByHostAndDoLog,
