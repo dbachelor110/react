@@ -13,7 +13,7 @@ async function main() {
     const op = await contract.methodsObject.mint_akaOBJ({
         amount: "1",
         address: `tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7`,
-        metadata: '697066733a2f2f516d52325672336775713467594d45366268676b47474a34714656647652786867766e47516d7a6672346d364635',
+        metadata: '697066733a2f2f6261666b726569646c6c7568623365766e376e6d327571756863706c763266646b77766136736c776432633372787571713376676f3279716e7471',
         royalties: {
             'tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7':"100"
         }
