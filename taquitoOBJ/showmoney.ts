@@ -5,7 +5,7 @@ async function main() {
 
 var tezosToolkit = new TezosToolkit("https://ghostnet.ecadinfra.com");
 
-tezosToolkit.tz.getBalance("tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7").then(balance => {
+tezosToolkit.tz.getBalance("KT1Jv5Z5XRHLNC1GNoSyqB7VzXkwtHqZcLNc").then(balance => {
     console.log(balance.toNumber());
 });
 

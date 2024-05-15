@@ -1,64 +1,114 @@
-// import { InMemorySigner } from "@taquito/signer";
-// import { TezosToolkit } from "@taquito/taquito";
-
-// async function main() {
-//     var tezosToolkit = new TezosToolkit("https://ghostnet.ecadinfra.com");
-
-//     const signer = await InMemorySigner.fromSecretKey('edskRuGkyi357QQy3tTLyFmQk3NVzL7qfAa2fPYinXuDFGU34xPiuRNqQ9tefuXj9NHz1fJ6BqbowWokcfZUcHXQheDCUEar8V');
-//     tezosToolkit.setProvider({ signer });
-
-//     const contract = await tezosToolkit.contract.at('KT1HPWEgkKawxjnq8L6569THCTG3DGD8XziL');
-//     const op = await contract.methodsObject.mint({
-//         collection_id: 71947,
-//         editions: 1,
-//         metadata_cid: '697066733a2f2f516d52325672336775713467594d45366268676b47474a34714656647652786867766e47516d7a6672346d364635',
-//         target: 'tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7'
-//     }).send();
-
-//     await op.confirmation();
-
-//     console.log(op.hash);
-// }
-
-// main().catch(console.error);
-
 import { TezosToolkit, MichelsonMap } from '@taquito/taquito';
 import { InMemorySigner } from '@taquito/signer';
-// import { MichelsonMap } from '@taquito/taquito';
+import { stringToBytes, bytesToString } from "@taquito/utils";
 
-// Initialize the Tezos toolkit
 const Tezos = new TezosToolkit('https://ghostnet.ecadinfra.com');
 Tezos.setProvider({ signer: new InMemorySigner('edskRuGkyi357QQy3tTLyFmQk3NVzL7qfAa2fPYinXuDFGU34xPiuRNqQ9tefuXj9NHz1fJ6BqbowWokcfZUcHXQheDCUEar8V') });
+const pudding = {
+  "name": "Pudding Bear",
+  "description": "Test upload object use other ipfs.io",
+  "tags": [
+    "P5js",
+    "bear",
+    "test"
+  ],
+  "symbol": "akaOBJ",
+  "artifactUri": "ipfs://QmTNvcfP6Bz9ar2juYLRT6TCmWoRPuc4UbZHmhxRqfDYLK",
+  "displayUri": "ipfs://QmTNvcfP6Bz9ar2juYLRT6TCmWoRPuc4UbZHmhxRqfDYLK",
+  "thumbnailUri": "ipfs://QmTNvcfP6Bz9ar2juYLRT6TCmWoRPuc4UbZHmhxRqfDYLK",
+  "creators": [
+    "tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7"
+  ],
+  "formats": [
+    {
+      "uri": "ipfs://QmTNvcfP6Bz9ar2juYLRT6TCmWoRPuc4UbZHmhxRqfDYLK",
+      "mimeType": "application/x-directory"
+    }
+  ],
+  "rights": "None (All rights reserved)",
+  "rightUri": "",
+  "decimals": 0,
+  "isBooleanAmount": false,
+  "shouldPreferSymbol": false
+};
 
-// Define the mint function
-const mint = async (tz:string, amount:string, cid:string, royalties:[]) => {
-  const royaltiesMap = new MichelsonMap();
-  royalties.forEach((value, key) => {
-    royaltiesMap.set(key, value);
-  });
 
-  const contract = await Tezos.contract.at('KT1HPWEgkKawxjnq8L6569THCTG3DGD8XziL');
-  const minter = contract.methodsObject.mint
-  const operation = await minter({})
-//   const operation = await contract.methodsObject.mint_akaOBJ(
-//     {
-//                 collection_id: 71947,
-//                 editions: 1,
-//                 metadata_cid: '697066733a2f2f516d52325672336775713467594d45366268676b47474a34714656647652786867766e47516d7a6672346d364635',
-//                 target: 'tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7'
-//             }tz, parseFloat(amount), cid, royaltiesMap).send();
-//   await operation.confirmation();
+const addAmounts = async () => {
+  const contract = await Tezos.wallet.at('KT1Jv5Z5XRHLNC1GNoSyqB7VzXkwtHqZcLNc');
+  const transfor = contract.methodsObject.nothing;
+  const operation = await transfor().send({ amount: 10 });
+  await operation.confirmation();
+
+  return operation;
+}
+const generateCollection = async () => {
+
+  const contract = await Tezos.wallet.at('KT1Jv5Z5XRHLNC1GNoSyqB7VzXkwtHqZcLNc');
+
+  const minter = contract.methodsObject.generateCollection;
+  // const operation = await minter(
+  //   {"": stringToBytes(`ipfs://bagaaierasords4njcts6vs7qvdjfcvgnume4hqohf65zsfguprqphs3icwea`),
+  //   "name": "Pudding Bear",
+  //   "symbol": "akaOBJ",
+  //   "decimals":"0"}
+  // )
+  const tokenIds = [1]; // 假設您要創建的 NFT 的 tokenIds 是 [1, 2, 3]
+  // const tokenMetas = new Map([
+  //   [1, { token_id: 1, token_info: stringToBytes(`ipfs://bagaaierasords4njcts6vs7qvdjfcvgnume4hqohf65zsfguprqphs3icwea`) }]
+  // ]);
+
+  // 將 tokenMetas 轉換為 big_map 的格式
+  const tokenMetasBigMap = new MichelsonMap();
+  tokenMetasBigMap.set("0", {
+    token_id: 1,
+    token_info: {"1":stringToBytes(`ipfs://bafkreidlluhb3evn7nm2uquhcplv2fdkwva6slwd2c3rxuqq3vgo2yqntq`)}
+  })
+
+  // 呼叫智能合約的 generateCollection 函數
+  const operation = await minter({
+    name: "Pudding Bear",            // name
+    tokenIds: tokenIds,              // tokenIds
+    tokenMetas: tokenMetasBigMap     // tokenMetas
+  }
+  ).send();
+  await operation.confirmation();
 
   return operation;
 };
 
-// Call the mint function
-const tz = 'tz1...'; // The address of the minter
-const amount = '1'; // The number of NFTs to mint
-const cid = 'Qm...'; // The content identifier for the NFT
-const royalties = new Map(); // The royalties for each address
-royalties.set('tz1...', '0.1'); // Set a royalty of 0.1 for address tz1...
+const mint = async () => {
 
-mint(tz, amount, cid, royalties)
-  .then(op => console.log(`Operation injected: ${op.hash}`))
-  .catch(err => console.error(`Error: ${err}`));
+  const contract = await Tezos.wallet.at('KT1M2LAPK2dcr5V1RZpwN1w5BXa7mCZdPswi');
+
+  const minter = contract.methodsObject.mint;
+  // const operation = await minter(
+  //   {"": stringToBytes(`ipfs://bagaaierasords4njcts6vs7qvdjfcvgnume4hqohf65zsfguprqphs3icwea`),
+  //   "name": "Pudding Bear",
+  //   "symbol": "akaOBJ",
+  //   "decimals":"0"}
+  // )
+  const tokenIds = [0]; // 假設您要創建的 NFT 的 tokenIds 是 [1, 2, 3]
+  // const tokenMetas = new Map([
+  //   [1, { token_id: 1, token_info: stringToBytes(`ipfs://bagaaierasords4njcts6vs7qvdjfcvgnume4hqohf65zsfguprqphs3icwea`) }]
+  // ]);
+
+  // 將 tokenMetas 轉換為 big_map 的格式
+  const tokenMetasBigMap = new MichelsonMap();
+  tokenMetasBigMap.set("0",
+    {"0":stringToBytes(`ipfs://bafkreidlluhb3evn7nm2uquhcplv2fdkwva6slwd2c3rxuqq3vgo2yqntq`)}
+  )
+
+  // 呼叫智能合約的 generateCollection 函數
+  const operation = await minter({
+    ids: tokenIds,              // tokenIds
+    metas: tokenMetasBigMap     // tokenMetas
+  }
+  ).send();
+  await operation.confirmation();
+
+  return operation;
+};
+
+
+mint();
+// addAmounts();

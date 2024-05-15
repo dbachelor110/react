@@ -12,7 +12,7 @@ async function main() {
 
     tezosToolkit.setProvider({ signer });
 
-    const op = await tezosToolkit.contract.transfer({ to: 'tz1YvE7Sfo92ueEPEdZceNWd5MWNeMNSt16L', amount: 1 });
+    const op = await tezosToolkit.contract.transfer({ to: 'KT1Jv5Z5XRHLNC1GNoSyqB7VzXkwtHqZcLNc', amount: 10 });
     await op.confirmation();
 
     console.log(op.hash);
