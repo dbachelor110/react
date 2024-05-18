@@ -1,55 +1,75 @@
 import ProcessInstance from "./ProcessInstance"
-import { useState, useEffect } from "react";
-import JBPM from './modules/jbpm';
+import { useJbpm,  } from "./hooks/useJbpm";
+
+const itemStyle = {
+  padding: `0.5rem 0.2rem`,
+  display: `flex`,
+  // 'justifyContent': `space-around`,
+}
+
+const unitStyle = {
+  margin: `0 2rem 0 0`,
+  width: `40%`,
+}
+
+const boardStyle = {
+  padding: `1rem 0`,
+}
+
+const strToBool=(inputData=`true`)=>{
+  const bools = {true:true,false:false};
+  const lowerInput=inputData.toLowerCase();
+  const boolValue=bools[lowerInput];
+  return boolValue?boolValue:inputData;
+}
+
+const bodyObjectMaker = () => {
+  const bodystr = document.getElementById('pushbody').value;
+  const bodypares = bodystr.split(',').reduce((p, c) => {
+    const pair = c.split('=');
+    pair.length == 2 ? p[pair[0]] = strToBool(pair[1]): {};
+    return p;
+  }, {});
+  return bodypares;
+};
+
+const makePushTitle=(inputTaskData)=>{
+  const id = inputTaskData['task-id'];
+  const status = inputTaskData['task-status'];
+  const [lable,apiStatus] = status==`Ready`? [`start`,`started`]:[`complete`,`completed`];
+  return {title:`/server/containers/base_1.0.0-SNAPSHOT/tasks/${id}/states/${apiStatus}`, lable:lable}
+}
+
+const pushButten=({title, lable, handler})=>{
+  // lable==`complete`?
+  return [
+          <input style={unitStyle} type="text" name="" id="pushbody" />,
+          <button title={title} style={unitStyle} onClick={handler} type="button">{lable}</button>
+        ];
+}
+
+const makePushElement = (activeUserTasks, handler)=>{
+  const{title, lable} = activeUserTasks?makePushTitle(activeUserTasks["task-summary"][0]):{title:`Clean up processes instances`,lable:`Clean up`};
+  const button = pushButten({title,lable,handler});
+  return button;
+}
+
+const Createbutton=(handler)=><button title={`/server/containers/base_1.0.0-SNAPSHOT/processes/base.choose/instances`} onClick={handler} type="button">Creat a Process Instance</button>;
 
 function App() {
-  const [pID, setPID] = useState(0);
-  
-  useEffect(() => {
-      if(pID==0){
-        setPID(-1);
-        console.log(`useEffect now id = ${pID}`);
-        getProcessInstanceID().then(id=>setPID(id));
-      }
-  }, []); // Empty dependency array ensures this effect runs only once on initial render
+  const [JBPM, creatProcess, pushTask, getForm] = useJbpm();
+  const pushTaskHandler = () => {
+    pushTask(bodyObjectMaker());
+  };
 
   return (
     <>
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <ProcessInstance id={pID} processName={processID}></ProcessInstance>
-      )}
-      <ProcessInstance id={pID} processName={processID}></ProcessInstance>
+      <ProcessInstance id={JBPM.process['process-instance-id']} processName={JBPM.process['process-name']} image={JBPM.image} data={JBPM.process}></ProcessInstance>
+      <div className="push" style={itemStyle}>
+        {Object.keys(JBPM.process).length == 0 ? Createbutton(creatProcess) : makePushElement(JBPM.process["active-user-tasks"],pushTaskHandler)}
+      </div>
     </>
   )
 }
 
 export default App
-
-{/* {
-  "task-summary" : [ {
-    "task-id" : 39,
-    "task-name" : "Choose Email or not.",
-    "task-subject" : "Choose Email or not",
-    "task-description" : "need input email as bool var.",
-    "task-status" : "Ready",
-    "task-priority" : 0,
-    "task-is-skipable" : false,
-    "task-actual-owner" : null,
-    "task-created-by" : null,
-    "task-created-on" : {
-  "java.util.Date" : 1712557462193
-},
-    "task-activation-time" : {
-  "java.util.Date" : 1712557462193
-},
-    "task-expiration-time" : null,
-    "task-proc-inst-id" : 39,
-    "task-proc-def-id" : "base.choose",
-    "task-container-id" : "base_1.0.0-SNAPSHOT",
-    "task-parent-id" : -1,
-    "correlation-key" : "39",
-    "process-type" : 1
-  } ]
-} */}
