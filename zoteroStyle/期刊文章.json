@@ -1,0 +1,71 @@
+[
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/YRAGTP9Q",
+		"type": "article-journal",
+		"container-title": "Foreign Affairs",
+		"issue": "4",
+		"note": "publisher: HeinOnline",
+		"page": "68-71",
+		"source": "Google Scholar",
+		"title": "US power and strategy after Iraq",
+		"URL": "https://heinonline.org/hol-cgi-bin/get_pdf.cgi?handle=hein.journals/fora82&section=57",
+		"volume": "82",
+		"author": [
+			{
+				"family": "Nye Jr.",
+				"given": "Joseph S."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2003",
+					8
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/VA3GJGFM",
+		"type": "article-journal",
+		"container-title": "遠景基金會季刊",
+		"issue": "3",
+		"note": "publisher: 財團法人兩岸交流遠景基金會",
+		"page": "1–10",
+		"source": "Google Scholar",
+		"title": "面對戰爭發言的權利",
+		"URL": "https://www.airitilibrary.com/Article/Detail/15601696-200407-5-3-1-26-a",
+		"volume": "5",
+		"author": [
+			{
+				"literal": "石之瑜"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2004",
+					7
+				]
+			]
+		}
+	}
+]

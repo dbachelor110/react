@@ -1,0 +1,45 @@
+{
+    "items": [
+      {
+        "title": "國際關係理論的啟蒙與反思",
+        "author": [
+          {
+            "family": "李",
+            "given": "英明"
+          }
+        ],
+        "publisher": "揚智文化",
+        "issued": {
+          "date-parts": [
+            [
+              2004
+            ]
+          ]
+        },
+        "publisher-place": "臺北",
+        "type": "book",
+        "page": "1-10"
+      },
+      {
+        "title": "The Clash of Civilizations and the Remaking of World Order",
+        "author": [
+          {
+            "family": "Huntington",
+            "given": "Samuel P."
+          }
+        ],
+        "publisher": "Simon & Schuster",
+        "issued": {
+          "date-parts": [
+            [
+              1996
+            ]
+          ]
+        },
+        "publisher-place": "New York",
+        "type": "book",
+        "page": "1-10"
+      }
+    ]
+  }
+  

@@ -1,0 +1,203 @@
+[
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/VGHJEA3X",
+		"type": "book",
+		"ISBN": "957-818-644-4",
+		"language": "zh-tw",
+		"publisher": "揚智文化事業股份有限公司",
+		"title": "國際關係理論的啓蒙與反思",
+		"author": [
+			{
+				"family": "李",
+				"given": "英明"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/N2DHI3D9",
+		"type": "book",
+		"language": "zh-tw",
+		"note": "original-title: [Structure and Change in Economic History]",
+		"publisher": "聯經出版事業公司",
+		"source": "Google Scholar",
+		"title": "經濟史的結構與變遷",
+		"URL": "https://www.google.com/books?hl=zh-TW&lr=&id=IsX5DQAAQBAJ&oi=fnd&pg=PA6&dq=%E5%8A%89%E7%91%9E%E8%8F%AF%E8%AD%AF%EF%BC%8C%E3%80%8A%E5%88%B6%E5%BA%A6%E3%80%81%E5%88%B6%E5%BA%A6%E8%AE%8A%E9%81%B7%E8%88%87%E7%B6%93%E6%BF%9F%E6%88%90%E5%B0%B1%E3%80%8B&ots=j3V7p1n8D8&sig=vuj6EPC3mXuD9JsZsYTl1C6QHUE",
+		"author": [
+			{
+				"family": "North",
+				"given": "Douglass C."
+			}
+		],
+		"translator": [
+			{
+				"family": "劉",
+				"given": "瑞華"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2016"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/5WW9SPV6",
+		"type": "book",
+		"event-place": "New York",
+		"language": "en-us",
+		"note": "publisher: [Washington, DC: International Monetary Fund], 1968-",
+		"number-of-pages": "1-10",
+		"publisher": "Simon & Schuster",
+		"publisher-place": "New York",
+		"source": "Google Scholar",
+		"title": "The clash of civilizations and the remaking of world order",
+		"URL": "https://www.stetson.edu/artsci/political-science/media/clash.pdf",
+		"author": [
+			{
+				"family": "Huntington",
+				"given": "Samuel P."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"1996"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/G2A625AT",
+		"type": "book",
+		"event-place": "New York",
+		"note": "original-title: [Histoire de la Sexualité Vol. 2: l’Usage des Plaisirs]",
+		"number-of-pages": "1-5",
+		"publisher": "Pantheon Books",
+		"publisher-place": "New York",
+		"source": "Google Scholar",
+		"title": "The history of sexuality, vol. 2: The use of pleasure",
+		"title-short": "The history of sexuality, vol. 2",
+		"URL": "https://www.google.com/books?hl=zh-TW&lr=&id=AT018Lgy5s4C&oi=fnd&pg=PR7&dq=The+History+of+Sexuality+Vol.+2:+The+Use+of+Pleasure&ots=jLf_qq8TWf&sig=7Y4sgVJyqXiUkl1XLMD3f6JIsfY",
+		"author": [
+			{
+				"family": "Foucault",
+				"given": "Michel"
+			}
+		],
+		"translator": [
+			{
+				"family": "Hurley",
+				"given": "Robert"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"1985"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/YQGKX5LA",
+		"type": "article-journal",
+		"container-title": "Explaining social institutions",
+		"note": "publisher: University of Michigan Press Ann Arbor",
+		"page": "116–31",
+		"source": "Google Scholar",
+		"title": "Five propositions about institutional change",
+		"URL": "https://www.google.com/books?hl=zh-TW&lr=&id=7oijqkMT0VwC&oi=fnd&pg=PA15&dq=Five+Propositions+about+Institutional+Change&ots=g0p-AKIR5F&sig=h8kS2zGXjtIt2enCwULEnFr0y48",
+		"volume": "99",
+		"author": [
+			{
+				"family": "North",
+				"given": "Douglass C."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"1995"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/5QCWWSRZ",
+		"type": "article-journal",
+		"container-title": "史匯",
+		"issue": "12",
+		"note": "publisher: 國立中央大學歷史研究所",
+		"page": "35–55",
+		"source": "Google Scholar",
+		"title": "明中葉首輔楊廷和之人際關係",
+		"URL": "https://www.airitilibrary.com/Article/Detail/P20220711001-200809-202208230009-202208230009-35-55",
+		"author": [
+			{
+				"family": "葉",
+				"given": "淑萍"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"2008"
+				]
+			]
+		}
+	}
+]

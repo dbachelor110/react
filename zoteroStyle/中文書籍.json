@@ -1,0 +1,60 @@
+[
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/VGHJEA3X",
+		"type": "book",
+		"ISBN": "957-818-644-4",
+		"language": "zh-tw",
+		"number-of-pages": "1-10",
+		"publisher": "揚智文化事業股份有限公司",
+		"publisher-place": "臺北",
+		"title": "國際關係理論的啓蒙與反思",
+		"author": [
+			{
+				"family": "李",
+				"given": "英明"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/EtL8a9Fy/items/5WW9SPV6",
+		"type": "book",
+		"event-place": "New York",
+		"language": "en-us",
+		"note": "publisher: [Washington, DC: International Monetary Fund], 1968-",
+		"number-of-pages": "1-10",
+		"publisher": "Simon & Schuster",
+		"publisher-place": "New York",
+		"source": "Google Scholar",
+		"title": "The clash of civilizations and the remaking of world order",
+		"URL": "https://www.stetson.edu/artsci/political-science/media/clash.pdf",
+		"author": [
+			{
+				"family": "Huntington",
+				"given": "Samuel P."
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					20
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"1996"
+				]
+			]
+		}
+	}
+]
