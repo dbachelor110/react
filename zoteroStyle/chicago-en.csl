@@ -39,6 +39,12 @@
   </info>
   <locale xml:lang="en">
     <terms>
+      <!-- prefix -->
+      <term name="(" form="short">(</term>
+      <term name=")" form="short">)</term>
+      <term name="do" form="short">. </term>
+      <term name="hat" form="short">: </term>
+      <term name="hook" form="short">, </term>
       <term name="volume" form="short">Vol.</term>
       <term name="issue" form="short">No.</term>
       <!-- pp. -->
@@ -54,14 +60,22 @@
   </locale>
   <locale xml:lang="zh">
     <terms>
+        <term name="(" form="short">（</term>
+        <term name=")" form="short">）</term>
+        <!-- quotescs -->
+        <term name="open-quote" >《</term>
+        <term name="close-quote" >》</term>
+        <term name="do" form="short">。</term>
+        <term name="hat" form="short">：</term>
+        <term name="hook" form="short">，</term>
         <term name="author" form="short">著</term>
         <term name="volume" form="short">第</term>
         <term name="volume-end" form="short">卷</term>
         <term name="issue" form="short">第</term>
         <term name="issue-end" form="short">期</term>
         <!-- pp. -->
-        <term name="number-of-pages" form="short">pp.</term>
-        <term name="page" form="short">pp.</term>
+        <term name="number-of-pages" form="short">頁</term>
+        <term name="page" form="short">頁</term>
         <term name="translator" form="verb-short">譯，</term>
         <!-- <term name="author" form="verb-short">，</term> -->
         <term name="editor" form="verb-short">編，</term>
@@ -203,7 +217,7 @@
     <group delimiter=" ">
       <names variable="author">
         <name and="text" sort-separator=", " delimiter=", "/>
-        <label form="short" prefix=", "/>
+        <!-- <label form="short" prefix=", "/> -->
         <substitute>
           <names variable="editor"/>
           <names variable="translator"/>
@@ -593,15 +607,17 @@
   <macro name="locators-note">
     <choose>
       <if type="article-journal">
-        <group delimiter=", ">
+        <group delimiter="">
           <text macro="collection-title-journal"/>
           <group delimiter=" ">
             <text term="volume" form="short"/>
             <text variable="volume" prefix=""/>
+            <text term="volume-end" form="short"/>
           </group>
           <group delimiter=" ">
             <text term="issue" form="short"/>
             <text variable="issue"/>
+            <text term="issue-end" form="short"/>
           </group>
         </group>
       </if>
@@ -867,8 +883,9 @@
         <text variable="event-place"/>
       </else-if>
       <else>
-        <group delimiter=": ">
+        <group delimiter="">
           <text variable="publisher-place"/>
+          <text term="hat" form="short" />
           <text variable="publisher"/>
         </group>
       </else>
@@ -1036,7 +1053,8 @@
           </if>
           <else-if>
             <if type="book" match="any">
-              <text term="volume" form="short" suffix=" "/>
+              <!-- <text term="volume" form="short" suffix=" "/> -->
+              <label variable="number-of-pages" form="short" suffix=" "/>
               <text variable="number-of-pages" />
             </if>
           </else-if>
@@ -1222,7 +1240,9 @@
         </group>
       </else-if>
       <else-if variable="publisher-place event-place publisher" match="any">
-        <group prefix="(" suffix=")" delimiter=", ">
+        <!-- 出版地、出版社 -->
+        <text term="(" form="short" />
+        <group delimiter="">
           <text macro="event-note"/>
           <group delimiter="; ">
             <text macro="originally-published"/>
@@ -1231,8 +1251,10 @@
               <text macro="publisher"/>
             </group>
           </group>
+          <text term="hook" form="short" />
           <text macro="issued"/>
         </group>
+        <text term=")" form="short" />
       </else-if>
       <else>
         <text macro="issued"/>
@@ -1448,7 +1470,7 @@
     </choose>
   </macro>
   <citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true">
-    <layout suffix="." delimiter="; ">
+    <layout suffix="" delimiter="; ">
       <choose>
         <if position="ibid ibid-with-locator" match="any">
           <group delimiter=", ">
@@ -1493,34 +1515,39 @@
         <else>
           <group delimiter=", ">
             <group delimiter=", ">
-              <group delimiter=", ">
-                <group delimiter=", ">
-                  <group delimiter=", ">
+              <group delimiter="">
+                <group delimiter="">
+                  <group delimiter="">
                     <group delimiter=" ">
-                      <group delimiter=", ">
-                        <group delimiter=", ">
+                      <group delimiter="">
+                        <group delimiter="">
                           <text macro="contributors-note"/>
+                          <text term="hook" form="short" />
                           <text macro="title-note"/>
+                          
                           <text macro="issue-map-graphic"/>
                         </group>
+                        <text term="hook" form="short" />
                         <text macro="description-note"/>
                         <text macro="secondary-contributors-note"/>
                         <text macro="container-title-note"/>
                         <text macro="container-contributors-note"/>
                       </group>
+                      <!-- 期、卷 -->
                       <text macro="locators-note-join-with-space"/>
                     </group>
                     <text macro="locators-note-join-with-comma"/>
                     <text macro="collection-title"/>
                     <text macro="issue-note-join-with-comma"/>
                   </group>
-                  <!-- 年月 -->
+                  <!-- 出版社、年月 -->
                   <text macro="issue-note-join-with-space"/>
                 </group>
                 <text macro="locators-newspaper"/>
+                <text term="hook" form="short" />
+                <!-- 頁碼 -->
                 <text macro="point-locators-join-with-comma"/>
               </group>
-              <!-- 頁碼 -->
               <text macro="point-locators-join-with-colon"/>
             </group>
             <!-- 網址 -->
@@ -1528,6 +1555,7 @@
           </group>
         </else>
       </choose>
+      <text term="do" form="short" />
     </layout>
   </citation>
   <bibliography hanging-indent="true" et-al-min="11" et-al-use-first="7" subsequent-author-substitute="&#8212;&#8212;&#8212;" entry-spacing="0">
@@ -1546,11 +1574,13 @@
                 <group delimiter=", ">
                   <group delimiter=", ">
                     <group delimiter=". ">
-                      <group delimiter=". ">
-                        <group delimiter=", ">
+                      <group delimiter="">
+                        <group delimiter="">
                           <text macro="contributors"/>
+                          <text term="hook" form="short" />
                           <text macro="issued"/>
                         </group>
+                        <text term="do" form="short" />
                         <text macro="title"/>
                         <text macro="issue-map-graphic"/>
                       </group>
