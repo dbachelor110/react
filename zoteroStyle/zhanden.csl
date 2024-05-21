@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.0" demote-non-dropping-particle="display-and-sort" page-range-format="chicago" default-locale="en-US">
+<style xmlns="http://purl.org/net/xbiblio/csl" class="note" version="1.0" demote-non-dropping-particle="display-and-sort" page-range-format="chicago">
   <info>
     <title>Chicago Manual of Style 17th edition (full note)</title>
     <id>http://www.zotero.org/styles/chicago-fullnote-bibliography</id>
@@ -54,7 +54,6 @@
   </locale>
   <locale xml:lang="zh">
     <terms>
-        <term name="author" form="short">著</term>
         <term name="volume" form="short">第</term>
         <term name="volume-end" form="short">卷</term>
         <term name="issue" form="short">第</term>
@@ -69,9 +68,6 @@
         <term name="translator" form="short">譯，</term>
         <term name="et-al">等</term>
     </terms>
-    <labels>
-      <label for="author" form="short"></label>
-    </labels>
   </locale>
   <macro name="editor-translator">
     <group delimiter=", ">
@@ -1448,7 +1444,89 @@
     </choose>
   </macro>
   <citation et-al-min="4" et-al-use-first="1" disambiguate-add-names="true">
-    <layout suffix="." delimiter="; ">
+  <!-- locale="zh-tw" -->
+    <layout locale="zh-tw" suffix="." delimiter="; ">
+      <choose>
+        <if position="ibid ibid-with-locator" match="any">
+          <group delimiter=", ">
+            <text macro="contributors-short"/>
+            <group delimiter=" ">
+              <group delimiter=", ">
+                <choose>
+                  <if variable="author editor translator" match="none">
+                    <text macro="title-short"/>
+                  </if>
+                </choose>
+                <text macro="case-locator-subsequent"/>
+              </group>
+              <text macro="case-pinpoint-subsequent"/>
+            </group>
+            <choose>
+              <if match="none" type="legal_case">
+                <text macro="point-locators-subsequent"/>
+              </if>
+            </choose>
+          </group>
+        </if>
+        <else-if position="subsequent">
+          <group delimiter=", ">
+            <text macro="contributors-short"/>
+            <group delimiter=" ">
+              <group delimiter=", ">
+                <text macro="title-short"/>
+                <!--if title & author are the same: -->
+                <text macro="date-disambiguate"/>
+                <text macro="case-locator-subsequent"/>
+              </group>
+              <text macro="case-pinpoint-subsequent"/>
+            </group>
+            <choose>
+              <if match="none" type="legal_case">
+                <text macro="point-locators-subsequent"/>
+              </if>
+            </choose>
+          </group>
+        </else-if>
+        <else>
+          <group delimiter=", ">
+            <group delimiter=", ">
+              <group delimiter=", ">
+                <group delimiter=", ">
+                  <group delimiter=", ">
+                    <group delimiter=" ">
+                      <group delimiter=", ">
+                        <group delimiter=", ">
+                          <text macro="contributors-note"/>
+                          <text macro="title-note"/>
+                          <text macro="issue-map-graphic"/>
+                        </group>
+                        <text macro="description-note"/>
+                        <text macro="secondary-contributors-note"/>
+                        <text macro="container-title-note"/>
+                        <text macro="container-contributors-note"/>
+                      </group>
+                      <text macro="locators-note-join-with-space"/>
+                    </group>
+                    <text macro="locators-note-join-with-comma"/>
+                    <text macro="collection-title"/>
+                    <text macro="issue-note-join-with-comma"/>
+                  </group>
+                  <!-- 年月 -->
+                  <text macro="issue-note-join-with-space"/>
+                </group>
+                <text macro="locators-newspaper"/>
+                <text macro="point-locators-join-with-comma"/>
+              </group>
+              <!-- 頁碼 -->
+              <text macro="point-locators-join-with-colon"/>
+            </group>
+            <!-- 網址 -->
+            <!-- <text macro="access-note"/> -->
+          </group>
+        </else>
+      </choose>
+    </layout>
+    <layout locale="en-us" suffix="." delimiter="; ">
       <choose>
         <if position="ibid ibid-with-locator" match="any">
           <group delimiter=", ">
@@ -1537,7 +1615,55 @@
       <key variable="genre"/>
       <key variable="issued"/>
     </sort>
-    <layout suffix=".">
+    <layout locale="zh-tw" suffix=".">
+      <group delimiter=". ">
+        <group delimiter=", ">
+          <group delimiter=", ">
+            <group delimiter=" ">
+              <group delimiter=". ">
+                <group delimiter=", ">
+                  <group delimiter=", ">
+                    <group delimiter=". ">
+                      <group delimiter=". ">
+                        <group delimiter=", ">
+                          <text macro="contributors"/>
+                          <text macro="issued"/>
+                        </group>
+                        <text macro="title"/>
+                        <text macro="issue-map-graphic"/>
+                      </group>
+                      <text macro="description"/>
+                      <text macro="secondary-contributors"/>
+                      <!-- 期刊名 -->
+                      <group delimiter=", ">
+                        <text macro="container-title"/>
+                        <text macro="container-contributors"/>
+                      </group>
+                      <text macro="locators-join-with-period"/>
+                    </group>
+                    <text macro="locators-join-with-comma"/>
+                    <text macro="locators-chapter"/>
+                  </group>
+                  <!-- 期、卷 -->
+                  <text macro="locators-join-with-space"/>
+                </group>
+                <text macro="collection-title"/>
+                <text macro="issue-join-with-period"/>
+              </group>
+              <!-- 年月 -->
+              <!-- <text macro="issue-join-with-space"/> -->
+            </group>
+            <text macro="issue-join-with-comma"/>
+            <text macro="locators-journal-join-with-comma"/>
+            <text macro="locators-newspaper"/>
+          </group>
+          <text macro="locators-journal-join-with-colon"/>
+        </group>
+        <!-- 網址 -->
+        <!-- <text macro="access"/> -->
+      </group>
+    </layout>
+    <layout locale="en-us" suffix=".">
       <group delimiter=". ">
         <group delimiter=", ">
           <group delimiter=", ">
