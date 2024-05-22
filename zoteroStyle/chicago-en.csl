@@ -37,7 +37,7 @@
     <updated>2024-03-17T19:02:00+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
-  <locale xml:lang="en">
+  <locale xml:lang="en" >
     <terms>
       <!-- prefix -->
       <term name="(" form="short">(</term>
@@ -45,6 +45,8 @@
       <term name="do" form="short">. </term>
       <term name="hat" form="short">: </term>
       <term name="hook" form="short">, </term>
+      <term name="hook-en" form="short">,</term>
+      <term name=" -en" form="short">&#x20;</term>
       <term name="volume" form="short">Vol.</term>
       <term name="issue" form="short">No.</term>
       <!-- pp. -->
@@ -63,11 +65,15 @@
         <term name="(" form="short">（</term>
         <term name=")" form="short">）</term>
         <!-- quotescs -->
+        <term name="year" from="long">《</term>
         <term name="open-quote" >《</term>
         <term name="close-quote" >》</term>
+        <term name="open-quote-zh" >《</term>
+        <term name="close-quote-zh" >》</term>
         <term name="do" form="short">。</term>
         <term name="hat" form="short">：</term>
         <term name="hook" form="short">，</term>
+        <term name="hook-zh" form="short">，</term>
         <term name="author" form="short">著</term>
         <term name="volume" form="short">第</term>
         <term name="volume-end" form="short">卷</term>
@@ -327,11 +333,14 @@
         <text variable="genre"/>
       </if>
       <else-if type="book graphic map motion_picture song" match="any">
+        <!-- open-quote-zh -->
+        <text term="open-quote-zh" form="short" />
         <text variable="title" text-case="title" font-style="italic" suffix=""/>
         <group delimiter=" " prefix=", ">
           <text term="version"/>
           <text variable="version"/>
         </group>
+        <text term="close-quote-zh" form="short" />
       </else-if>
       <else-if type="legal_case interview patent" match="any">
         <text variable="title"/>
@@ -340,7 +349,13 @@
         <text variable="title" font-style="italic" prefix="review of "/>
       </else-if>
       <else>
-        <text variable="title" text-case="title" quotes="true"/>
+        <group quotes="true">
+          <text variable="title" text-case="title"/>
+          <text term="hook-en" form="short" />
+        </group>
+        <text term=" -en" form="short" />
+        <text term="hook-zh" form="short" />
+        
       </else>
     </choose>
   </macro>
@@ -485,7 +500,7 @@
           <text variable="container-title" text-case="title" font-style="italic" suffix=" (blog)"/>
         </else-if>
         <else-if type="bill legislation legal_case" match="none">
-          <text variable="container-title" text-case="title"/>
+          <text variable="container-title" text-case="title" font-style="italic"/>
         </else-if>
       </choose>
     </group>
@@ -614,6 +629,8 @@
             <text variable="volume" prefix=""/>
             <text term="volume-end" form="short"/>
           </group>
+          <text term="hook-en" form="short" />
+          <text term=" -en" form="short" />
           <group delimiter=" ">
             <text term="issue" form="short"/>
             <text variable="issue"/>
@@ -1514,28 +1531,28 @@
         </else-if>
         <else>
           <group delimiter=", ">
-            <group delimiter=", ">
+            <group delimiter="">
               <group delimiter="">
                 <group delimiter="">
                   <group delimiter="">
-                    <group delimiter=" ">
+                    <group delimiter="">
                       <group delimiter="">
                         <group delimiter="">
                           <text macro="contributors-note"/>
                           <text term="hook" form="short" />
                           <text macro="title-note"/>
-                          
                           <text macro="issue-map-graphic"/>
                         </group>
-                        <text term="hook" form="short" />
                         <text macro="description-note"/>
                         <text macro="secondary-contributors-note"/>
                         <text macro="container-title-note"/>
+                        <text term="hook" form="short" />
                         <text macro="container-contributors-note"/>
                       </group>
                       <!-- 期、卷 -->
                       <text macro="locators-note-join-with-space"/>
                     </group>
+                    <text term="hook" form="short" />
                     <text macro="locators-note-join-with-comma"/>
                     <text macro="collection-title"/>
                     <text macro="issue-note-join-with-comma"/>
