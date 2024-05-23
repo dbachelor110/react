@@ -39,6 +39,7 @@
   </info>
   <locale xml:lang="en" >
     <terms>
+      <term name="and">&amp;</term>
       <!-- prefix -->
       <term name="(" form="short">(</term>
       <term name=")" form="short">)</term>
@@ -54,7 +55,10 @@
       <!-- pp. -->
       <term name="number-of-pages" form="short">pp.</term>
       <term name="page" form="short">pp.</term>
-      <term name="editor" form="verb-short">ed.</term>
+      <term name="editor" form="verb-short">
+        <single>, ed.</single>
+        <multiple>, eds.</multiple>
+      </term>
       <term name="translator" form="verb-short">trans.</term>
       <term name="translator" form="short">trans.</term>
       <term name="editortranslator" form="verb-short">ed. and trans.</term>
@@ -96,6 +100,8 @@
         <term name="hat" form="short">：</term>
         <term name="hook" form="short">，</term>
         <term name="hook-zh" form="short">，</term>
+
+        <term name="in"></term>
         <term name="author" form="short">著</term>
         <term name="volume" form="short">第</term>
         <term name="volume-end" form="short">卷</term>
@@ -106,7 +112,10 @@
         <term name="page" form="short">頁</term>
         <term name="translator" form="verb-short">譯，</term>
         <!-- <term name="author" form="verb-short">，</term> -->
-        <term name="editor" form="verb-short">編，</term>
+        <term name="editor" form="verb-short">
+          <single>主編</single>
+          <multiple>等編</multiple>
+        </term>
         <term name="translator" form="short">譯，</term>
         <term name="translator" form="short">譯，</term>
         <term name="et-al">等</term>
@@ -130,8 +139,9 @@
         </choose>
       </group>
       <names variable="editor translator" delimiter=", ">
-        <label form="verb-short" text-case="lowercase" suffix=" "/>
-        <name and="text" delimiter=", "/>
+        <name and="text" delimiter=", " />
+        <!-- <text term="hook" from="short"/> -->
+        <label form="verb-short" text-case="lowercase"/>
       </names>
     </group>
   </macro>
@@ -162,7 +172,7 @@
   <macro name="container-contributors">
     <choose>
       <if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">
-        <group delimiter=". ">
+        <group delimiter="">
           <choose>
             <if variable="author">
               <choose>
@@ -185,10 +195,15 @@
                   </group>
                 </if>
                 <else>
+                  <text term="in"/>
+                  <text term=" -en" form="short"/>
+                  
                   <names variable="editor translator" delimiter=", ">
-                    <label form="verb" text-case="lowercase" suffix=" "/>
+                    
                     <name and="text" delimiter=", "/>
+                    <label form="verb-short" text-case="lowercase"/>
                   </names>
+                  <text term="hook" form="short"/>
                 </else>
               </choose>
             </if>
@@ -414,10 +429,22 @@
         <text variable="title"/>
       </else-if>
       <else-if type="article-journal">
+        <text term="open-quote-en" form="short" />
         <text variable="title"/>
+        <text term="open-quote-en" form="short" prefix="," suffix=" "/>
       </else-if>
       <else>
-        <text variable="title" text-case="title" quotes="true"/>
+        <!-- <text variable="title" text-case="title" quotes="true"/> -->
+        <!-- <term name="〈" >〈</term>
+        <term name="〉" >〉</term> -->
+        <text term="〈" form="short" />
+        <text term="open-quote-en" form="short" />
+        <text variable="title" text-case="title"/>
+        <!-- <text term="hook-en" form="short" /> -->
+        <text term="〉" form="short" />
+        <text term="close-quote-en" form="short" prefix="," suffix=" "/>
+        <!-- <text term=" -en" form="short" /> -->
+        <text term="hook-zh" form="short" />
       </else>
     </choose>
   </macro>
@@ -515,10 +542,13 @@
     </group>
   </macro>
   <macro name="container-title-note">
-    <group delimiter=" ">
+    <group delimiter="">
       <choose>
         <if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">
           <text term="in"/>
+          <text term=" -en" form="short"/>
+          <text macro="container-contributors-note"/>
+          <text term="hook" form="short"/>
         </if>
       </choose>
       <choose>
@@ -532,6 +562,21 @@
           <text term="open-quote-zh"/>
           <text variable="container-title" text-case="title" font-style="italic"/>
           <text term="close-quote-zh"/>
+          <!-- <text term="hook" form="short" /> -->
+        </else-if>
+        <else-if type="chapter">
+          <text term="open-quote-zh"/>
+          <!-- <choose>
+            <if language="zh-tw">
+              <text variable="container-title" text-case="title"/>
+            </if>
+            <else>
+              <text variable="container-title" text-case="title" font-style="italic"/>
+            </else>
+          </choose> -->
+          <text variable="container-title" text-case="title" font-style="italic"/>
+          <text term="close-quote-zh"/>
+          <!-- <text term="hook" form="short" /> -->
         </else-if>
         <else-if type="bill legislation legal_case" match="none">
           <text variable="container-title" text-case="title" font-style="italic"/>
@@ -553,11 +598,11 @@
         <else-if type="post-weblog">
           <text variable="container-title" text-case="title" font-style="italic" suffix=" (blog)"/>
         </else-if>
-        <else-if type="article-journal">
+        <else-if type="article-journal chapter" match="any" >
           <text term="open-quote-zh"/>
           <!-- <term name="〈" >〈</term>
         <term name="〉" >〉</term> -->
-          <text variable="container-title" text-case="title" font-style="italic"/>
+          <text variable="container-title" text-case="title"/>
           <text term="close-quote-zh"/>
         </else-if>
         <else-if type="bill legislation legal_case" match="none">
@@ -808,6 +853,7 @@
   <macro name="locators">
     <choose>
       <if type="article-journal">
+        <text term="hook" form="short" />
         <group delimiter="">
           <text macro="collection-title-journal"/>
           <group delimiter=" ">
@@ -1298,6 +1344,10 @@
           <if type="article-newspaper" match="none">
             <choose>
               <if type="article-journal" match="none">
+                <!-- <if type="chapter" match="any">
+                  <text term="hook" form="short" />
+                </if> -->
+                <!-- <text term="hook" form="short" /> -->
                 <text macro="issue-note"/>
               </if>
               <else-if variable="issue volume" match="any">
@@ -1374,6 +1424,14 @@
       </else-if>
       <else-if variable="publisher-place event-place publisher" match="any">
         <!-- 出版地、出版社 -->
+        <choose>
+          <if type="chapter">
+            <text term=" -en" form="short" />
+          </if>
+          <else-if>
+            <text term="hook" form="short" />
+          </else-if>
+        </choose>
         <text term="(" form="short" />
         <group delimiter="">
           <text macro="event-note"/>
@@ -1460,6 +1518,7 @@
       </if>
       <else-if type="article-journal">
         <choose>
+          <!-- <text term="hook" form="short" /> -->
           <if variable="issue volume" match="any">
             <text macro="issued" prefix="(" suffix=")"/>
           </if>
@@ -1494,7 +1553,7 @@
               <text variable="genre" text-case="capitalize-first"/>
             </if>
           </choose>
-          <group delimiter=". ">
+          <group delimiter=", ">
             <text macro="originally-published"/>
             <group delimiter=", ">
               <text macro="reprint"/>
@@ -1662,13 +1721,13 @@
                         <text macro="description-note"/>
                         <text macro="secondary-contributors-note"/>
                         <text macro="container-title-note"/>
-                        <text term="hook" form="short" />
-                        <text macro="container-contributors-note"/>
+                        <!-- <text term="hook" form="short" /> -->
+                        
                       </group>
                       <!-- 期、卷 -->
                       <text macro="locators-note-join-with-space"/>
                     </group>
-                    <text term="hook" form="short" />
+                    
                     <text macro="locators-note-join-with-comma"/>
                     <text macro="collection-title"/>
                     <text macro="issue-note-join-with-comma"/>
@@ -1704,7 +1763,7 @@
         <group delimiter="">
           <group delimiter=", ">
             <group delimiter=" ">
-              <group delimiter=". ">
+              <group delimiter="">
                 <group delimiter="">
                   <group delimiter=", ">
                     <group delimiter="">
@@ -1722,19 +1781,18 @@
                       <text macro="secondary-contributors"/>
                       <!-- 期刊名 -->
                       <group delimiter="">
-                        <text macro="container-title"/>
                         <text macro="container-contributors"/>
+                        <text macro="container-title"/>
                       </group>
                       <text macro="locators-join-with-period"/>
                     </group>
                     <text macro="locators-join-with-comma"/>
-                    <text macro="locators-chapter"/>
                   </group>
                   <!-- 期、卷 -->
-                  <text term="hook" form="short" />
                   <text macro="locators-join-with-space"/>
                 </group>
                 <text macro="collection-title"/>
+                <!-- 出版社 -->
                 <text macro="issue-join-with-period"/>
               </group>
               <!-- 年月 -->
@@ -1746,6 +1804,7 @@
           </group>
           <!-- 頁 -->
           <text term="hook" form="short" />
+          <text macro="locators-chapter"/>
           <text macro="locators-journal-join-with-colon"/>
         </group>
         <!-- 網址 -->

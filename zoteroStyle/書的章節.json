@@ -1,0 +1,65 @@
+[
+	{
+		"id": "http://zotero.org/users/local/db8sUWG6/items/UDJL8ZAB",
+		"type": "chapter",
+		"container-title": "臺灣安全戰略評估2003-2004",
+		"event-place": "臺北",
+		"language": "zh-tw",
+		"page": "36-40",
+		"publisher": "遠景基金會",
+		"publisher-place": "臺北",
+		"title": "中共政局變遷對我國家安全之影響",
+		"author": [
+			{
+				"family": "張",
+				"given": "五岳"
+			}
+		],
+		"editor": [
+			{
+				"family": "丁",
+				"given": "渝洲"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2004"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/db8sUWG6/items/WX2V2C5M",
+		"type": "chapter",
+		"container-title": "Explaining Social Institutions",
+		"event-place": "Ann  Arbor",
+		"page": "18-21",
+		"publisher": "University of Michigan Press",
+		"publisher-place": "Ann  Arbor",
+		"title": "Five Propositions about Institutional Change",
+		"editor": [
+			{
+				"family": "Knight",
+				"given": "Jack"
+			},
+			{
+				"family": "Sened",
+				"given": "Itai"
+			}
+		],
+		"author": [
+			{
+				"family": "North",
+				"given": "Douglass C."
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"1995"
+				]
+			]
+		}
+	}
+]
