@@ -1,0 +1,62 @@
+[
+	{
+		"id": "http://zotero.org/users/local/db8sUWG6/items/XW7DC58U",
+		"type": "thesis",
+		"event-place": "臺北",
+		"genre": "博士論文",
+		"language": "zh-tw",
+		"note": "department: 東亞研究所",
+		"number-of-pages": "1-10",
+		"publisher": "政治大學",
+		"publisher-place": "臺北",
+		"title": "一個新封建主義的歷史範疇──中國宗族社會與村落社 會的持續與變遷：1900-1999",
+		"author": [
+			{
+				"family": "陳",
+				"given": "重成"
+			}
+		],
+		"issued": {
+			"date-parts": [
+				[
+					"2000"
+				]
+			]
+		}
+	},
+	{
+		"id": "http://zotero.org/users/local/db8sUWG6/items/DRPBHIA6",
+		"type": "thesis",
+		"event-place": "Seattle, USA",
+		"genre": "Diss.",
+		"note": "department: Economics",
+		"number-of-pages": "1-10",
+		"publisher": "University of Washington",
+		"publisher-place": "Seattle, USA",
+		"source": "Google Scholar",
+		"title": "Three essays on marital births and taxes",
+		"URL": "https://search.proquest.com/openview/ff1791874f0d280f19d6d8e65411d322/1?pq-origsite=gscholar&cbl=18750&diss=y",
+		"author": [
+			{
+				"family": "Huang",
+				"given": "Jr-Tsung"
+			}
+		],
+		"accessed": {
+			"date-parts": [
+				[
+					"2024",
+					5,
+					28
+				]
+			]
+		},
+		"issued": {
+			"date-parts": [
+				[
+					"1998"
+				]
+			]
+		}
+	}
+]

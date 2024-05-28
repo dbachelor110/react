@@ -1,9 +1,10 @@
 [
 	{
-		"id": "http://zotero.org/users/local/EtL8a9Fy/items/YRAGTP9Q",
+		"id": "http://zotero.org/users/local/db8sUWG6/items/NRALFEUF",
 		"type": "article-journal",
 		"container-title": "Foreign Affairs",
 		"issue": "4",
+		"language": "en-us",
 		"note": "publisher: HeinOnline",
 		"page": "68-71",
 		"source": "Google Scholar",
@@ -35,10 +36,11 @@
 		}
 	},
 	{
-		"id": "http://zotero.org/users/local/EtL8a9Fy/items/VA3GJGFM",
+		"id": "http://zotero.org/users/local/db8sUWG6/items/FVJL6U2R",
 		"type": "article-journal",
 		"container-title": "遠景基金會季刊",
 		"issue": "3",
+		"language": "zh-tw",
 		"note": "publisher: 財團法人兩岸交流遠景基金會",
 		"page": "1–10",
 		"source": "Google Scholar",
