@@ -2,7 +2,8 @@ import { InMemorySigner } from "@taquito/signer";
 import { TezosToolkit, MichelsonMap } from "@taquito/taquito";
 import { KEY } from "./.env";
 const akaCollection = `KT1Ezqs7ijHpVfRDkyahKM9p2ovR5Sk6PPoL`;
-const Incubator = ``
+const Incubator = ``;
+const Creature = `KT1C8eVAxajftvXLHTV6nQUz2Xmyh9HbV589`;
 async function main() {
     var tezosToolkit = new TezosToolkit("https://ghostnet.ecadinfra.com");
 
@@ -11,14 +12,9 @@ async function main() {
 
     const contract = await tezosToolkit.wallet.at(akaCollection);
     const royalties = new MichelsonMap();
-    royalties.set(akaCollection,"100");
-    const op = await contract.methodsObject.mint_akaOBJ({
-        amount: "1",
+    const op = await contract.methodsObject.set_nft({
         address: `tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7`,
-        metadata: '697066733a2f2f6261666b726569646c6c7568623365766e376e6d327571756863706c763266646b77766136736c776432633372787571713376676f3279716e7471',
-        royalties: {
-            'tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7':"100"
-        }
+        tokem_id:
     }).send();
 
     await op.confirmation();
