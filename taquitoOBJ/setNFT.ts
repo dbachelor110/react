@@ -14,7 +14,7 @@ async function main() {
     const royalties = new MichelsonMap();
     const op = await contract.methodsObject.set_nft({
         address: `tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7`,
-        tokem_id:
+        tokem_id:`1`
     }).send();
 
     await op.confirmation();
