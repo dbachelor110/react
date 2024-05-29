@@ -15,6 +15,9 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@helia/dag-cbor": "^3.0.4",
+    "@helia/dag-json": "^3.0.4",
+    "@helia/json": "^3.0.4",
     "@helia/unixfs": "^3.0.6",
     "@taquito/signer": "^19.2.0",
     "@taquito/taquito": "^19.2.0",
