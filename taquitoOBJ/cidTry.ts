@@ -6,7 +6,7 @@ import { fromString } from 'uint8arrays/from-string';
 const helia = await createHelia();
 
 const creature = {
-    "name": "Who am I? Creature.00T",
+    "name": "Who am I? Creature.02T",
     "description": "Test upload object use helia.js",
     "tags": [
       "ReactJS",
@@ -15,15 +15,15 @@ const creature = {
       "test"
     ],
     "symbol": "akaOBJ",
-    "artifactUri": "ipfs://QmXQc7uzhqjWS39BD2dyfMQfvtKBkRXEAYQruf6Fyr8h1y",
-    "displayUri": "ipfs://QmXQc7uzhqjWS39BD2dyfMQfvtKBkRXEAYQruf6Fyr8h1y",
-    "thumbnailUri": "ipfs://QmXQc7uzhqjWS39BD2dyfMQfvtKBkRXEAYQruf6Fyr8h1y",
+    "artifactUri": "ipfs://QmW37qei9XDwsfrEPpAFgPthDde33zqwMEYnprxdzLdxyZ",
+    "displayUri": "ipfs://QmW37qei9XDwsfrEPpAFgPthDde33zqwMEYnprxdzLdxyZ",
+    "thumbnailUri": "ipfs://QmW37qei9XDwsfrEPpAFgPthDde33zqwMEYnprxdzLdxyZ",
     "creators": [
       "tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7"
     ],
     "formats": [
       {
-        "uri": "ipfs://QmXQc7uzhqjWS39BD2dyfMQfvtKBkRXEAYQruf6Fyr8h1y",
+        "uri": "ipfs://QmSgZHUQKSNJrcUjzpkbAEevq6FkF2AEfyHcyDz8irB6Vz",
         "mimeType": "application/x-directory"
       }
     ],
@@ -73,5 +73,6 @@ const json2metadata = async()=>{
     console.info(stringToBytes(`ipfs://${fileCid.toString()}`));
 }
 await json2metadata();
-helia.stop();
+// cidV12cidV0("bafybeicara5ovnw3wqc4fpbg4sh7faw5ktdekct4qe43zyspyifdsspoyu");
+// helia.stop();
 

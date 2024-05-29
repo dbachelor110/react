@@ -64,14 +64,22 @@
 
 import { createHelia } from 'helia'
 import { unixfs, globSource } from '@helia/unixfs'
+import { CID } from 'multiformats';
 
 const helia = await createHelia();
 const fs = unixfs(helia);
-
-
-let lastEntry;
-for await (const entry of fs.addAll(globSource('../creature/out', '**/*'))) {
+const dir = await fs.addDirectory();
+const cache:{ currentDirCID:CID,[key: string]: unknown } = { currentDirCID:dir };
+for await (const entry of fs.addAll(globSource('../creature/dist', '**/*'))) {
   console.info(entry);
-  lastEntry=entry;
+  if( !entry.path || entry.path.split("/").length > 2 ) {continue}
+  console.log(`file: [${entry.path}] is in Top layer.`)
+  cache.currentDirCID = await fs.cp(entry.cid,cache.currentDirCID,entry.path.replace("/",""));
+  console.log(`currentDirCID: ${cache.currentDirCID}`);
+  
 }
-helia.pins.add(lastEntry);
+for await (const entry of fs.ls(cache.currentDirCID)) {
+  console.info(entry);
+}
+helia.pins.add(cache.currentDirCID);
+// helia.stop();s

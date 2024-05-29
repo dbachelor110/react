@@ -1,0 +1,28 @@
+{
+    "name": "Who am I? Creature.02T",
+    "description": "Test upload object use helia.js",
+    "tags": [
+      "ReactJS",
+      "Creature",
+      "WhoAmI",
+      "test"
+    ],
+    "symbol": "akaOBJ",
+    "artifactUri": "ipfs://QmW37qei9XDwsfrEPpAFgPthDde33zqwMEYnprxdzLdxyZ",
+    "displayUri": "ipfs://QmW37qei9XDwsfrEPpAFgPthDde33zqwMEYnprxdzLdxyZ",
+    "thumbnailUri": "ipfs://QmW37qei9XDwsfrEPpAFgPthDde33zqwMEYnprxdzLdxyZ",
+    "creators": [
+      "tz1hEAnakHZqHGf4dbPPQVSVKtfq8Xwzhmp7"
+    ],
+    "formats": [
+      {
+        "uri": "ipfs://QmSgZHUQKSNJrcUjzpkbAEevq6FkF2AEfyHcyDz8irB6Vz",
+        "mimeType": "application/x-directory"
+      }
+    ],
+    "rights": "None (All rights reserved)",
+    "rightUri": "",
+    "decimals": 0,
+    "isBooleanAmount": false,
+    "shouldPreferSymbol": false
+  }

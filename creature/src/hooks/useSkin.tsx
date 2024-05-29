@@ -3,7 +3,7 @@ import { TezosToolkit } from "@taquito/taquito";
 type skinSettor = (skin:string)=>Promise<void>;
 type useSkinOutput = [string, skinSettor];
 
-const env = (async()=>{
+const env = await (async()=>{
     const response = await fetch("/env.json");
     const file:{Creature:string} = await response.json();
     console.log(file.Creature);
@@ -13,7 +13,7 @@ const env = (async()=>{
 const useSkin = (
     Tezos: TezosToolkit
 ):useSkinOutput => {
-    const [Creature, setCreature] = useState<string>("");
+    const [Creature] = useState<string>(env);
     const [skin, _setSkin] = useState<string>("");
 
     const updateSkin = async () => {
@@ -36,11 +36,8 @@ const useSkin = (
         finally {await updateSkin();}
     };
     useEffect(() => {
-        (async()=>{
-            setCreature(await env);
-            await updateSkin();
-        })();
-    }, [Creature]);
+        updateSkin();
+    }, []);
     return [skin, setSkin];
 };
 export { useSkin }
