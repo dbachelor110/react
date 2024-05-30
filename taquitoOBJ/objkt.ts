@@ -1,7 +1,7 @@
 import { InMemorySigner } from "@taquito/signer";
 import { TezosToolkit, MichelsonMap } from "@taquito/taquito";
 import { stringToBytes } from "@taquito/utils";
-import { KEY } from "./.env";
+// import { KEY } from "./.env";
 const akaCollection = `KT1Ezqs7ijHpVfRDkyahKM9p2ovR5Sk6PPoL`;
 const PuddingMetadata = `697066733a2f2f6261666b726569646c6c7568623365766e376e6d327571756863706c763266646b77766136736c776432633372787571713376676f3279716e7471`;
 const CreatureTMetadata = stringToBytes(`ipfs://${`Qmf3c89tsKgZwjgdUbmbaCb3UUAqBfvrbfSqCTGoXMaAFV`}`);

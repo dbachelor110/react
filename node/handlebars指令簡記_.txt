@@ -1,0 +1,45 @@
+handlebars主要概念使用context彈性更換template內容
+
+cntext範例
+{customer:"Joseph"}
+template範例:
+<p>welcome ,{{customer}}</p>輸出<p>welcome ,Joseph </p>
+
+handlebars view元件泛指網站中的單一網頁資源
+
+handlebars layout則是 template的tamplate
+
+partial則是重複使用得元件
+
+
+
+handlebars指令簡記:
+
+指令以 {{}}包裹,#開頭,但結尾無#是使用'/'結尾,常用指令如下
+
+{{#if 條件}}判斷為真執行
+
+{{else}}
+
+{{/if}}
+
+{{#unless 條件}}判斷為假執行
+
+{{/unless}}
+
+{{#each 資料結構}}迭代
+     
+{{else}}
+
+{{/each }}
+
+{{<p> do somthing </p>}} 兩層大掛號中的html將不解譯
+{{{<p> do somthing </p>}}} 三層大掛號中的html將直接輸出可在web browser中直接使用html功能
+
+ {{#each currencies}}
+        <a href="#" class="currency">{{.}}</a>這邊的{{.}},代表使用each迭代currencies中取出的單一元素物件
+ {{else}}
+        Unfortunately,we currently only accept {{currency.name}}.
+ {{/each}}
+ 
+
