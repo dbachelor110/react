@@ -5,6 +5,7 @@ import ConnectButton from "./components/ConnectButton";
 import Incubator from "./components/Incubator";
 import { useSkin } from "./hooks/useSkin";
 import { BeaconWallet } from "@taquito/beacon-wallet";
+import Local from "./Local";
 
 const App = () => {
   const [Tezos] = useState<TezosToolkit>(
@@ -23,7 +24,8 @@ const App = () => {
   const incubator = <Incubator setSkin={setSkin} />;
   const app = <>
     {connectButton}
-    <h1>{skin}</h1>
+    {/* <h1>{skin}</h1> */}
+    <Local skin={skin}/>
     {userAddress ? incubator : <></>}
   </>;
   return app;
