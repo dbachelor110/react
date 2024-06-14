@@ -52,12 +52,18 @@ class Creatures{
       for( let item of this.Items.body){
         item.points?this.points=item.points:{};
       }
+      console.log(this.points);
       for(let key of Object.keys(this.points)){
+        console.log(`this.Items:`);
+        console.info(this.Items);
+        
         if ( key in this.Items){
           const itemsArray = this.Items[key as keyof creaturePrams];
           if (!itemsArray) return;
           for( let item of itemsArray){
-            item.show(addPointPair(this.location,this.points[key]));
+            const drawPoint = addPointPair(this.location,this.points[key]);
+            console.log(`show on point ${drawPoint.x}, ${drawPoint.y}`);
+            item.show(drawPoint);
           }
         }
       }
