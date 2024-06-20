@@ -6,7 +6,7 @@ import Incubator from "./components/Incubator";
 import { useSkin } from "./hooks/useSkin";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import Local from "./Local";
-
+Local as () => JSX.Element;
 const App = () => {
   const [Tezos] = useState<TezosToolkit>(
     new TezosToolkit("https://ghostnet.ecadinfra.com")

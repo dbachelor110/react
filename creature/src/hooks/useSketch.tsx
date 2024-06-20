@@ -2,14 +2,10 @@ import p5 from 'p5';
 import { useEffect, useRef } from 'react';
 import { getCreature } from './Creature';
 
-type LocalProps = {
-  skin: string;
-};
-
-function Local(props: LocalProps) {
+function useSketch(skin=`egg`) {
   const p5ContainerRef = useRef<HTMLDivElement>(null);
 
-  const sketch=(p: p5)=>{
+  const sketch=(p)=>{
     console.log(`skin: ${props.skin}`);
     const creature = getCreature(1, 2, 2, 2);
     p.setup = function () {
@@ -24,7 +20,7 @@ function Local(props: LocalProps) {
   }
 
   useEffect(() => {
-    let p5Instance: p5 | undefined;
+    let p5Instance;
     
     if (p5ContainerRef.current) {
       p5Instance = new p5(sketch, p5ContainerRef.current);
@@ -37,7 +33,7 @@ function Local(props: LocalProps) {
     };
   }, []);
 
-  return <div className="Local" ref={p5ContainerRef} />;
+  return p5ContainerRef;
 }
 
-export default Local;
+export default useSketch;
