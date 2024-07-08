@@ -1,5 +1,5 @@
 // import p5 from "p5";
-import items, {Point, BezierVertex, ItemMap, Item} from "./items";
+import items, {Point, BezierVertex, ItemMap, Item} from "./_items";
 
 const {p5} = items;
 const {addPointPair} = items;

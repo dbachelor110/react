@@ -14,7 +14,7 @@ const App = () => {
   const [wallet, setWallet] = useState<BeaconWallet | undefined>(undefined);
   const [userAddress, setUserAddress] = useState<string | undefined>(undefined);
   const [skin, setSkin] = useSkin(Tezos);
-  const [testSkin, _setTestSkin] = useState({v1:0,v2:0,v3:0,v4:0});
+  const [testSkin, _setTestSkin] = useState({v1:2,v2:1,v3:0,v4:0});
   const [incubating, setIncubating] = useState(false);
   const setTestSkin = (skin:string)=>_setTestSkin({v1:parseInt(skin[0]),v2:parseInt(skin[1]),v3:parseInt(skin[2]),v4:parseInt(skin[3])});
 

@@ -91,6 +91,7 @@ const getItemsBySkin=(skin)=>{
         Items.head = [items.heads.dic];
     } else {
         Items.body = [items.bodys.dic, items.bodys.dicDodo];
+        Items.roots = items.bodys.dic.roots;
     }
 
     // accessorie

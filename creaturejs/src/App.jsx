@@ -5,7 +5,7 @@ import './App.css'
 import { Sketch } from './Sketch'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [count, setCount] = useState(0)
 
   return (
     <Sketch/>

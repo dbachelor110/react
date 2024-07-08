@@ -4,13 +4,12 @@ import { Skin } from "./useCreature";
 type skinSettor = (skin:string)=>any;
 type useSkinOutput = [Skin, skinSettor];
 
-const env = "KT1C8eVAxajftvXLHTV6nQUz2Xmyh9HbV589";
-// await (async()=>{
-//     const response = await fetch("/env.json");
-//     const file:{Creature:string} = await response.json();
-//     console.log(file.Creature);
-//     return file.Creature;
-// })();
+const env = await (async()=>{
+    const response = await fetch("/env.json");
+    const file:{Creature:string} = await response.json();
+    console.log(file.Creature);
+    return file.Creature;
+})();
 
 const useSkin = (
     Tezos: TezosToolkit
