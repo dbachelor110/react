@@ -3,7 +3,7 @@ import {
   ReactP5Wrapper,
   SketchProps
 } from "@p5-wrapper/react";
-import { useCreature, isSamePoint, addPointPair, CreatureState, BezierVertex, Angle, Skin } from "./hooks/useCreature";
+import { useCreature, isSamePoint, addPointPair, CreatureState, BezierVertex, Angle, Skin } from "../hooks/useCreature";
 type Point = { x: number, y: number, [key: string]: number };
 type Angeles = {
   leftHand:number[],

@@ -6,7 +6,7 @@ import ConnectButton from "./components/ConnectButton";
 import From from "./components/Form";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { useSkin } from "./hooks/useSkin";
-import { Sketch } from "./Sketch";
+import { Sketch } from "./components/Sketch";
 const App = () => {
   const [Tezos] = useState<TezosToolkit>(
     new TezosToolkit("https://ghostnet.ecadinfra.com")
